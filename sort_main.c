@@ -108,7 +108,7 @@ int main()
                 else if(modeCnt == MERGESORT){
                         gettimeofday(&start, NULL);
                         mergesort(dataSort, 0, DATACNT - 1);
-			gettimeofday(&start, NULL);
+			gettimeofday(&end, NULL);
 			diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
                         printf("Merge sort performance of number %ld us (equal %f sec)\n", diff, diff/1000000.0);
                         
