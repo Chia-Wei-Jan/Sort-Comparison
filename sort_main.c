@@ -90,12 +90,17 @@ int main()
                 if(modeCnt == QUICKSORT){
                         gettimeofday(&start, NULL);
                         quicksort(dataSort, 0, DATACNT - 1);
+			gettimeofday(&end, NULL);
+                        diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
+                        printf("Quick sort performance of number %ld us (equal %f sec)\n", diff, diff/1000000.0);
+
+			gettimeofday(&start, NULL);
 			str_quicksort(strSort, 0, DATACNT - 1);
                         gettimeofday(&end, NULL);
-
                         diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
-                        printf("Quick sort performance %ld us (equal %f sec)\n", diff, diff/1000000.0);
-                        for(i = 0; i < DATACNT; i++){
+                        printf("Quick sort performance of string %ld us (equal %f sec)\n", diff, diff/1000000.0);
+
+			for(i = 0; i < DATACNT; i++){
                                 fprintf(quicksort_file1, "%d\n", dataSort[i]);
                         	fprintf(quicksort_file2, "%s\n", strSort[i]);
 			}
@@ -103,12 +108,17 @@ int main()
                 else if(modeCnt == MERGESORT){
                         gettimeofday(&start, NULL);
                         mergesort(dataSort, 0, DATACNT - 1);
-                        str_mergesort(strSort, 0, DATACNT - 1);
+			gettimeofday(&start, NULL);
+			diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
+                        printf("Merge sort performance of number %ld us (equal %f sec)\n", diff, diff/1000000.0);
+                        
+			gettimeofday(&start, NULL);
+			str_mergesort(strSort, 0, DATACNT - 1);
 			gettimeofday(&end, NULL);
-
                         diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
-                        printf("Merge sort performance %ld us (equal %f sec)\n", diff, diff/1000000.0);
-                        for(i = 0; i < DATACNT; i++){
+                        printf("Merge sort performance of string %ld us (equal %f sec)\n", diff, diff/1000000.0);
+
+			for(i = 0; i < DATACNT; i++){
                                 fprintf(mergesort_file1, "%d\n", dataSort[i]);
                         	fprintf(mergesort_file2, "%s\n", strSort[i]);
 			}
@@ -116,12 +126,17 @@ int main()
                 else if(modeCnt == HEAPSORT){
                         gettimeofday(&start, NULL);
                         heapsort(dataSort, DATACNT);
-                        str_heapsort(strSort, DATACNT);
 			gettimeofday(&end, NULL);
+			diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
+                        printf("Heap sort performance of number %ld us (equal %f sec)\n", diff, diff/1000000.0);
 
+			gettimeofday(&start, NULL);
+			str_heapsort(strSort, DATACNT);
+			gettimeofday(&end, NULL);
                         diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
-                        printf("Heap sort performance %ld us (equal %f sec)\n", diff, diff/1000000.0);
-                        for(i = 0; i < DATACNT; i++){
+                        printf("Heap sort performance of string %ld us (equal %f sec)\n", diff, diff/1000000.0);
+                        
+			for(i = 0; i < DATACNT; i++){
                                 fprintf(heapsort_file1, "%d\n", dataSort[i]);
                         	fprintf(heapsort_file2, "%s\n", strSort[i]);
 			}
